@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable, Sequence
 import time
 import xml.etree.ElementTree as ET
+from collections.abc import Iterable, Sequence
 
 from .contracts import (
     MetricsSink,

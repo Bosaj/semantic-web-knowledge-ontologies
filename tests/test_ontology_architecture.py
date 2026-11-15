@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-from pathlib import Path
 import sys
 import unittest
+from pathlib import Path
 
 SRC_DIR = str(Path(__file__).resolve().parents[1] / "src")
 if SRC_DIR not in sys.path:
     sys.path.insert(0, SRC_DIR)
 
-from ontology_engine import (  # noqa: E402
+from ontology_engine import (
     InMemoryMetricsSink,
     OntologyContainer,
     OntologyParseError,
@@ -21,8 +21,8 @@ from ontology_engine import (  # noqa: E402
     ValidationError,
     XmlOntologyParser,
 )
-from ontology_engine.contracts import InMemoryTripleStore  # noqa: E402
-from ontology_engine.reasoner import (  # noqa: E402
+from ontology_engine.contracts import InMemoryTripleStore
+from ontology_engine.reasoner import (
     RDF_TYPE,
     RDFS_SUBCLASS_OF,
     RDFS_SUBPROPERTY_OF,
@@ -154,6 +154,7 @@ class TestOntologyArchitecture(unittest.TestCase):
             chain.append(RdfTriple(f"ex:ind{j}", RDF_TYPE, "ex:C0"))
         closure, summary = reasoner.materialize(chain)
         self.assertEqual(summary.asserted_triples, 125)
+        self.assertGreater(len(closure), 2000)
         self.assertGreater(summary.inferred_triples, 2000)
         self.assertLess(metrics.percentile_ms("ontology.reason_ms", 95), 2000.0)
 
