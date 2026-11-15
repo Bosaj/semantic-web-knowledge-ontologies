@@ -1,5 +1,5 @@
 # Stage 1: Prepare ontology assets and reasoning package
-FROM python:3.12-alpine AS builder
+FROM python:3.15-alpine AS builder
 
 WORKDIR /stage
 COPY . .
