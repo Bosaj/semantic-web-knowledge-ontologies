@@ -14,7 +14,7 @@ class TestOntologies(unittest.TestCase):
 
         for owl_file in owl_files:
             owl_path = os.path.join(ontologies_dir, owl_file)
-            with open(owl_path, "r", encoding="utf-8", errors="ignore") as f:
+            with open(owl_path, encoding="utf-8", errors="ignore") as f:
                 content = f.read().strip()
             self.assertGreater(len(content), 0, f"{owl_file} must not be empty")
 
